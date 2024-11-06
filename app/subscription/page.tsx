@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const Subscritpion = () => {
-  return (
-    <div>Subscritpion</div>
-  )
-}
+const SubscritpionPage = () => {
+  return <div>SubscritpionPage</div>;
+};
 
-export default Subscritpion
+export default SubscritpionPage;
