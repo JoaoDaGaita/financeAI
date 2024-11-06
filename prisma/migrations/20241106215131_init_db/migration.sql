@@ -13,10 +13,12 @@ CREATE TABLE "Transaction" (
     "name" TEXT NOT NULL,
     "type" "TransactionType" NOT NULL,
     "amount" DECIMAL(10,2) NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL,
     "category" "TransactionCategory" NOT NULL,
     "paymentMethod" "TransactionPaymentMethod" NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
 
     CONSTRAINT "Transaction_pkey" PRIMARY KEY ("id")
 );
