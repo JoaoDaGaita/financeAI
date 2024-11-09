@@ -5,7 +5,7 @@ import type {
   TransactionPaymentMethod,
   TransactionType,
 } from "@prisma/client";
-import { addTransactionSchema } from "./schema";
+import { upsertTransactionSchema } from "./schema";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/app/_lib/prisma";
 import { revalidatePath } from "next/cache";
@@ -21,14 +21,14 @@ interface AddTransactionProps {
 }
 
 export const upsertTransaction = async (params: AddTransactionProps) => {
-  addTransactionSchema.parse(params);
+  upsertTransactionSchema.parse(params);
   const { userId } = await auth();
   if (!userId) {
     throw new Error("Unauthorized");
   }
   await db.transaction.upsert({
     where: {
-      id: params.id,
+      id: params.id ?? "",
     },
     update: { ...params, userId },
     create: { ...params, userId },

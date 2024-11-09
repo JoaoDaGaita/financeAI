@@ -52,7 +52,7 @@ interface UpsertTransactionDialogProps {
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "O nome é obrigatório" }),
-  amount: z.number({ required_error: "O tipo é obrigatório" }),
+  amount: z.number(),
   type: z.nativeEnum(TransactionType, {
     required_error: "O tipo é obrigatório",
   }),
@@ -89,6 +89,8 @@ const UpsertTransactionDialog = ({
 
   const onSubmit = async (data: FormSchema) => {
     try {
+      console.log(data);
+
       await upsertTransaction({ ...data, id: transactionId });
       setIsOpen(false);
       form.reset();
